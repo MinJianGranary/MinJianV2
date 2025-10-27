@@ -157,12 +157,12 @@
       <div class="gallery">
         <h3 style="color:var(--accent);">📸 精彩图片</h3>
         <div class="gallery-slide" id="gallerySlide">
-          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image1.jpg" alt="图片1">
-          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image2.jpg" alt="图片2">
-          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image3.jpg" alt="图片3">
-          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image4.jpg" alt="图片4">
-          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image5.jpg" alt="图片5">
-          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image6.jpg" alt="图片6">
+          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image1.png" alt="图片1">
+          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image2.png" alt="图片2">
+          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image3.png" alt="图片3">
+          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image4.png" alt="图片4">
+          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image5.png" alt="图片5">
+          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image6.png" alt="图片6">
         </div>
       </div>
 
