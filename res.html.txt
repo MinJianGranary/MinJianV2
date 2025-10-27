@@ -148,7 +148,7 @@
         <div class="info">
           <h3>📞 门店信息</h3>
           <p>MinJian Granary 民间粮仓</p>
-          <p class="small">电话：<a id="phoneLink" href="tel:0173764861">017-3764861</a></p>
+          <a class="btn" id="callBtn" href="tel:+60173764861">📞 立即拨号</a>
           <p class="small">地址：点击导航或联系客服</p>
         </div>
       </div>
