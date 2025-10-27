@@ -31,17 +31,7 @@
       radial-gradient(circle at 10% 10%, rgba(138,75,42,0.06), transparent 20%),
       linear-gradient(90deg, rgba(138,75,42,0.04), transparent 40%);
   }
-  .{
-    width:88px;height:88px;border-radius:12px;
-    display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(180deg,#fff,#f7efe6);
-    box-shadow:0 6px 18px rgba(138,75,42,0.06);
-    border:1px solid rgba(138,75,42,0.08);
-    flex-shrink:0;
-  }
-  .logo img{
-    width:88px;height:88px;object-fit:cover;
-  }
+  .logo img{ width:88px;height:88px;object-fit:cover; }
   .brand{flex:1}
   .brand h1{margin:0;font-size:18px;color:var(--accent);letter-spacing:1px;}
   .brand p{margin:6px 0 0;color:var(--muted);font-size:13px;}
@@ -64,8 +54,37 @@
   .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(138,75,42,0.12);box-shadow:none;font-weight:600;}
   .note{padding:14px 18px;border-top:1px solid rgba(0,0,0,0.03);background:linear-gradient(180deg,rgba(250,247,243,0.5),transparent);}
   .footer{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;color:var(--muted);font-size:13px;}
-  .qr{width:130px;height:130px;border-radius:0px;background:transparent;display:flex;align-items:center;justify-content:center;border:none solid rgba(0,0,0,0.04);}
+  .qr{width:130px;height:130px;border-radius:0;background:transparent;display:flex;align-items:center;justify-content:center;border:none;}
   .divider{height:1px;background:linear-gradient(90deg,transparent,#eee,transparent);margin:14px 0;}
+
+  /* 图片画廊 */
+  .gallery { margin-top:20px; position:relative; overflow:hidden; border-radius:12px; }
+  .gallery h3 { margin-bottom:10px; }
+  .gallery-slide { display:flex; transition: transform 0.5s ease; }
+  .gallery-slide img {
+    width:100%;
+    border-radius:12px;
+    object-fit:cover;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+
+  /* Lightbox 弹窗 */
+  #lightboxOverlay {
+    display:none;
+    position:fixed;
+    top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.7);
+    justify-content:center; align-items:center;
+    z-index:9999;
+  }
+  #lightboxOverlay img {
+    max-width:90%;
+    max-height:90%;
+    border-radius:12px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.3);
+  }
+
   @media (max-width:520px){
     .hero{padding:16px}
     .logo{width:72px;height:72px}
@@ -76,114 +95,81 @@
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card" role="region" aria-label="用餐预订确认函">
-      <!-- HERO -->
-      <div class="hero">
-        <div class="logo" id="logo">
-          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/logo.png" alt="Logo">
-        </div>
-        <div class="brand">
-          <h1>MinJian Granary 民间粮仓 • 马来西亚首店</h1>
-          <p id="greeting">尊敬的贵宾，您好！我们已为您成功预订座位。</p>
-        </div>
+<div class="wrap">
+  <div class="card" role="region" aria-label="用餐预订确认函">
+    <!-- HERO -->
+    <div class="hero">
+      <div class="logo" id="logo">
+        <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/logo.png" alt="Logo">
       </div>
-
-      <!-- CONTENT -->
-      <div class="content">
-        <div class="row">
-          <div class="info">
-            <h3>📅 用餐日期</h3>
-            <p id="date">2025年10月25日（星期六）</p>
-            <div class="small">🕛 <span id="time">18:30</span></div>
-          </div>
-
-          <div class="info">
-            <h3>👥 预订人数 / 包间</h3>
-            <p id="guests">8-10位贵宾</p>
-            <div class="small">🍽 餐位/包间编号：<strong id="table">V01</strong></div>
-          </div>
-
-          <div class="info">
-            <h3>📞 门店信息</h3>
-            <p>MinJian Granary 民间粮仓</p>
-            <p class="small">电话：<a id="phoneLink" href="tel:0173764861">017-3764861</a></p>
-            <p class="small">地址：点击导航或联系客服</p>
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;">
-          <div style="flex:1;min-width:220px">
-            <h3 style="color:var(--accent);margin:0 0 10px">我们期待与您相聚</h3>
-            <p id="nameLine" style="margin:0 0 8px;font-size:15px;color:#333">致：<strong id="guestName">贵宾</strong></p>
-            <p style="margin:0;color:var(--muted)">若需更改人数或时间，请尽快联系我们以便为您调整座位安排。</p>
-
-            <div class="buttons" style="margin-top:14px">
-              <a class="btn" id="wazeBtn" href="#" target="_blank" rel="noopener noreferrer">🧭 Waze 一键导航</a>
-              <a class="btn" id="googleBtn" href="https://www.google.com/maps/search/?api=1&query=MinJian+Granary" target="_blank">🗺 谷歌地图</a>
-              <a class="btn" id="callBtn" href="tel:0173764861">📞 立即拨号</a>
-            </div>
-          </div>
-
-          <div style="width:160px">
-            <div class="qr" id="qrBox" title="欢迎光临">
-              <img src="https://raw.githubusercontent.com/Joane2523/MinJianV2/main/welcome.gif" 
-                   alt="欢迎光临">
-            </div>
-          </div>
-        </div>
-
-        <div class="note">
-          <p style="margin:0;color:var(--muted);font-size:13px">
-            停车信息：本店设有停车场，建议使用停车场停放；路边停车可能被贴罚单。若需要代客泊车或有其他特殊需求，请在到店前来电告知。
-          </p>
-        </div>
-      </div>
-
-      <div class="footer">
-        <div>店长签名：<strong style="color:var(--accent)">民间粮仓 店长</strong></div>
-        <div style="text-align:right;color:var(--muted);font-size:12px">用餐愉快</div>
+      <div class="brand">
+        <h1>MinJian Granary 民间粮仓 • 马来西亚首店</h1>
+        <p id="greeting">尊敬的贵宾，您好！我们已为您成功预订座位。</p>
       </div>
     </div>
-  </div>
 
-<script>
-const CONFIG = {
-  waze: "https://waze.com/ul/hw28648432",
-  phone: "0173764861",
-  defaultName: "贵宾",
-  defaultDate: "2025年10月25日（星期六）",
-  defaultTime: "18:30",
-  defaultGuests: "8-10位贵宾",
-  defaultTable: "V01"
-};
+    <!-- CONTENT -->
+    <div class="content">
+      <div class="row">
+        <div class="info">
+          <h3>📅 用餐日期</h3>
+          <p id="date">2025年10月25日（星期六）</p>
+          <div class="small">🕛 <span id="time">18:30</span></div>
+        </div>
 
-function getParam(k){ const params = new URLSearchParams(window.location.search); return params.get(k) || ""; }
-function safeText(s){ return s ? decodeURIComponent(s) : ""; }
+        <div class="info">
+          <h3>👥 预订人数 / 包间</h3>
+          <p id="guests">8-10位贵宾</p>
+          <div class="small">🍽 餐位/包间编号：<strong id="table">V01</strong></div>
+        </div>
 
-document.addEventListener("DOMContentLoaded", () => {
-  const name = getParam('name') || CONFIG.defaultName;
-  const date = getParam('date') || CONFIG.defaultDate;
-  const time = getParam('time') || CONFIG.defaultTime;
-  const guests = getParam('guests') || CONFIG.defaultGuests;
-  const table = getParam('table') || CONFIG.defaultTable;
+        <div class="info">
+          <h3>📞 门店信息</h3>
+          <p>MinJian Granary 民间粮仓</p>
+          <p class="small">电话：<a id="phoneLink" href="tel:0173764861">017-3764861</a></p>
+          <p class="small">地址：点击导航或联系客服</p>
+        </div>
+      </div>
 
-  document.getElementById('guestName').textContent = safeText(name);
-  document.getElementById('nameLine').innerHTML = "致：<strong id='guestName2'>"+safeText(name)+"</strong>";
-  document.getElementById('date').textContent = safeText(date);
-  document.getElementById('time').textContent = safeText(time);
-  document.getElementById('guests').textContent = safeText(guests);
-  document.getElementById('table').textContent = safeText(table);
+      <div class="divider"></div>
 
-  const wazeBtn = document.getElementById('wazeBtn');
-  wazeBtn.href = CONFIG.waze;
-  wazeBtn.setAttribute('aria-label','打开 Waze 导航');
+      <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;">
+        <div style="flex:1;min-width:220px">
+          <h3 style="color:var(--accent);margin:0 0 10px">我们期待与您相聚</h3>
+          <p id="nameLine" style="margin:0 0 8px;font-size:15px;color:#333">致：<strong id="guestName">贵宾</strong></p>
+          <p style="margin:0;color:var(--muted)">若需更改人数或时间，请尽快联系我们以便为您调整座位安排。</p>
 
-  document.getElementById('callBtn').href = "tel:" + CONFIG.phone;
-  document.getElementById('phoneLink').href = "tel:" + CONFIG.phone;
-});
-</script>
-</body>
-</html>
+          <div class="buttons" style="margin-top:14px">
+            <a class="btn" id="wazeBtn" href="#" target="_blank" rel="noopener noreferrer">🧭 Waze 一键导航</a>
+            <a class="btn" id="googleBtn" href="https://www.google.com/maps/search/?api=1&query=MinJian+Granary" target="_blank">🗺 谷歌地图</a>
+            <a class="btn" id="callBtn" href="tel:0173764861">📞 立即拨号</a>
+          </div>
+        </div>
+
+        <div style="width:160px">
+          <div class="qr" id="qrBox" title="欢迎光临">
+            <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/welcome.gif" alt="欢迎光临">
+          </div>
+        </div>
+      </div>
+
+      <!-- 图片轮播画廊 -->
+      <div class="gallery">
+        <h3 style="color:var(--accent);">📸 精彩图片</h3>
+        <div class="gallery-slide" id="gallerySlide">
+          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image1.jpg" alt="图片1">
+          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image2.jpg" alt="图片2">
+          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image3.jpg" alt="图片3">
+        </div>
+      </div>
+
+      <div class="note">
+        <p style="margin:0;color:var(--muted);font-size:13px">
+          停车信息：本店设有停车场，建议使用停车场停放；路边停车可能被贴罚单。若需要代客泊车或有其他特殊需求，请在到店前来电告知。
+        </p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>店长签名：<strong style="color:var(--accent)">民间粮仓 店长</strong></div>
+      <div style="text-align:right;color:var(--muted);font-size:12px">用餐愉快</div>
