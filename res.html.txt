@@ -122,10 +122,10 @@
     <!-- HERO -->
     <div class="hero">
       <div class="logo" id="logo">
-        <img src="https://MinJianGranary.github.io/MinJianV2/logo.png" alt="Logo">
+        <img src="https://minjiangranary.github.io/MinJianV2/logo.png" alt="Logo">
       </div>
       <div class="brand">
-        <h1>MinJianGranary 民间粮仓 • 马来西亚首店</h1>
+        <h1>minjiangranary 民间粮仓 • 马来西亚首店</h1>
         <p id="greeting">尊敬的贵宾，您好！我们已为您成功预订座位。</p>
       </div>
     </div>
@@ -147,7 +147,7 @@
 
         <div class="info">
           <h3>📞 门店信息</h3>
-          <p>MinJianGranary 民间粮仓</p>
+          <p>minjiangranary 民间粮仓</p>
           <a class="btn" id="callBtn" href="tel:+60173764861">📞 立即拨号</a>
           <p class="small">地址：点击导航或联系客服</p>
         </div>
@@ -179,12 +179,12 @@
       <div class="gallery">
         <h3 style="color:var(--accent);">📸 精彩图片</h3>
         <div class="gallery-grid">
-          <img src="https://MinJianGranary.github.io/MinJianV2/image1.png" alt="图片1">
-          <img src="https://MinJianGranary.github.io/MinJianV2/image2.png" alt="图片2">
-          <img src="https://MinJianGranary.github.io/MinJianV2/image3.png" alt="图片3">
-          <img src="https://MinJianGranary.github.io/MinJianV2/image4.png" alt="图片4">
-          <img src="https://MinJianGranary.github.io/MinJianV2/image5.png" alt="图片5">
-          <img src="https://MinJianGranary.github.io/MinJianV2/image6.png" alt="图片6">
+          <img src="https://minjiangranary.github.io/MinJianV2/image1.png" alt="图片1">
+          <img src="https://minjiangranary.github.io/MinJianV2/image2.png" alt="图片2">
+          <img src="https://minjiangranary.github.io/MinJianV2/image3.png" alt="图片3">
+          <img src="https://minjiangranary.github.io/MinJianV2/image4.png" alt="图片4">
+          <img src="https://minjiangranary.github.io/MinJianV2/image5.png" alt="图片5">
+          <img src="https://minjiangranary.github.io/MinJianV2/image6.png" alt="图片6">
         </div>
       </div>
 
