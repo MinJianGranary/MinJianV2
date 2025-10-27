@@ -130,7 +130,7 @@
           <div style="width:160px">
             <div class="qr" id="qrBox" title="欢迎光临">
               <img src="https://raw.githubusercontent.com/Joane2523/MinJianV2/main/welcome.gif" 
-                   alt="欢迎光临" style="width:100%;height:100%;object-fit:contain;border-radius:8px;">
+                   alt="欢迎光临" style="width:120%;height:120%;object-fit:contain;border-radius:0px;">
             </div>
           </div>
         </div>
