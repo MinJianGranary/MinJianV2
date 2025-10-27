@@ -180,6 +180,7 @@
         <h3 style="color:var(--accent);">📸 精彩图片</h3>
         <div class="gallery-grid">
           <img src="https://joane2523.github.io/MinJianV2/image1.png" alt="图片1">
+          <img src="https://joane2523.github.io/MinJianV2/image2.png" alt="图片2">
           <img src="https://joane2523.github.io/MinJianV2/image3.png" alt="图片3">
           <img src="https://joane2523.github.io/MinJianV2/image4.png" alt="图片4">
           <img src="https://joane2523.github.io/MinJianV2/image5.png" alt="图片5">
