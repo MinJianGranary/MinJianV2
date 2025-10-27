@@ -64,7 +64,7 @@
   .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(138,75,42,0.12);box-shadow:none;font-weight:600;}
   .note{padding:14px 18px;border-top:1px solid rgba(0,0,0,0.03);background:linear-gradient(180deg,rgba(250,247,243,0.5),transparent);}
   .footer{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;color:var(--muted);font-size:13px;}
-  .qr{width:140px;height:140px;border-radius:0px;background:transparent;display:flex;align-items:center;justify-content:center;border:none solid rgba(0,0,0,0.04);}
+  .qr{width:130px;height:130px;border-radius:0px;background:transparent;display:flex;align-items:center;justify-content:center;border:none solid rgba(0,0,0,0.04);}
   .divider{height:1px;background:linear-gradient(90deg,transparent,#eee,transparent);margin:14px 0;}
   @media (max-width:520px){
     .hero{padding:16px}
