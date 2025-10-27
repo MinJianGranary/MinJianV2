@@ -100,7 +100,7 @@
     <!-- HERO -->
     <div class="hero">
       <div class="logo" id="logo">
-        <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/logo.png" alt="Logo">
+        <img src="https://joane2523.github.io/MinJianV2/logo.png" alt="Logo">
       </div>
       <div class="brand">
         <h1>MinJian Granary 民间粮仓 • 马来西亚首店</h1>
@@ -148,7 +148,7 @@
 
         <div style="width:160px">
           <div class="qr" id="qrBox" title="欢迎光临">
-            <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/welcome.gif" alt="欢迎光临">
+            <img src="https://joane2523.github.io/MinJianV2/welcome.gif" alt="欢迎光临">
           </div>
         </div>
       </div>
@@ -157,12 +157,12 @@
       <div class="gallery">
         <h3 style="color:var(--accent);">📸 精彩图片</h3>
         <div class="gallery-slide" id="gallerySlide">
-          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image1.png" alt="图片1">
-          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image2.png" alt="图片2">
-          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image3.png" alt="图片3">
-          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image4.png" alt="图片4">
-          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image5.png" alt="图片5">
-          <img src="https://raw.githubusercontent.com/Joane2523/MinjianV2/main/image6.png" alt="图片6">
+          <img src="https://joane2523.github.io/MinJianV2/image1.png" alt="图片1">
+          <img src="https://joane2523.github.io/MinJianV2/image2.png" alt="图片2">
+          <img src="https://joane2523.github.io/MinJianV2/image3.png" alt="图片3">
+          <img src="https://joane2523.github.io/MinJianV2/image4.png" alt="图片4">
+          <img src="https://joane2523.github.io/MinJianV2/image5.png" alt="图片5">
+          <img src="https://joane2523.github.io/MinJianV2/image6.png" alt="图片6">
         </div>
       </div>
 
@@ -176,3 +176,39 @@
     <div class="footer">
       <div>店长签名：<strong style="color:var(--accent)">民间粮仓 店长</strong></div>
       <div style="text-align:right;color:var(--muted);font-size:12px">用餐愉快</div>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox 弹窗 -->
+<div id="lightboxOverlay">
+  <img src="" id="lightboxImg">
+</div>
+
+<script>
+const CONFIG = {
+  waze: "https://waze.com/ul/hw28648432",
+  phone: "0173764861",
+  defaultName: "贵宾",
+  defaultDate: "2025年10月25日（星期六）",
+  defaultTime: "18:30",
+  defaultGuests: "8-10位贵宾",
+  defaultTable: "V01"
+};
+
+function getParam(k){ const params = new URLSearchParams(window.location.search); return params.get(k) || ""; }
+function safeText(s){ return s ? decodeURIComponent(s) : ""; }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const name = getParam('name') || CONFIG.defaultName;
+  const date = getParam('date') || CONFIG.defaultDate;
+  const time = getParam('time') || CONFIG.defaultTime;
+  const guests = getParam('guests') || CONFIG.defaultGuests;
+  const table = getParam('table') || CONFIG.defaultTable;
+
+  document.getElementById('guestName').textContent = safeText(name);
+  document.getElementById('nameLine').innerHTML = "致：<strong id='guestName2'>"+safeText(name)+"</strong>";
+  document.getElementById('date').textContent = safeText(date);
+  document.getElementById('time').textContent = safeText(time);
+  document.getElementById('guests').textContent = safeText(guests);
+  document.getElementById('table').textContent = safe
