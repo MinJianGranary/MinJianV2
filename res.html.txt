@@ -131,33 +131,32 @@
   color: var(--muted);
 }
 
+/* GIF 自适应容器 */
+.expect-gif {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  pointer-events:none; /* 不阻挡点击 */
+}
 .expect-gif .gif-wrapper {
-  width: 160px;       /* GIF 宽度 */
-  height: 160px;      /* GIF 高度固定 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width:160px;
+  max-width:60%;
+  height:auto;
 }
-
 .expect-gif img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* 保持 GIF 完整显示 */
-  border-radius: 0;
+  width:100%;
+  height:auto;
+  object-fit:contain;
 }
 
-/* 移动端自适应 */
-@media (max-width: 520px) {
-  .expect-gif-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+/* 移动端自适应 GIF */
+@media (max-width:520px){
   .expect-gif .gif-wrapper {
-    width: 100%;
-    max-width: 220px;
-    height: auto;
-    margin-top: 12px;
+    width:60%;      /* 最大占容器宽度 60% */
+    max-width:160px;/* 最大 160px */
+    height:auto;
   }
+}
 </style>
 </head>
 <body>
@@ -189,15 +188,15 @@
           <div class="small">🍽 餐位/包间编号：<strong id="table">V01</strong></div>
         </div>
 
-         <div class="info">
-            <h3>📞 门店信息</h3>
-            <p>MinJian Granary 民间粮仓</p>
-            <p class="small">电话：<a id="phoneLink" href="tel:0173764861">017-3764861</a></p>
-            <p class="small">地址：查看导航或联系客服</p>
-          </div>
+        <div class="info">
+          <h3>📞 门店信息</h3>
+          <p>MinJian Granary 民间粮仓</p>
+          <p class="small">电话：<a id="phoneLink" href="tel:0173764861">017-3764861</a></p>
+          <p class="small">地址：查看导航或联系客服</p>
         </div>
+      </div>
 
-        <div class="divider"></div>
+      <div class="divider"></div>
 
       <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;">
         <div style="flex:1;min-width:220px">
@@ -208,11 +207,11 @@
           <div class="buttons" style="margin-top:14px">
             <a class="btn" id="wazeBtn" href="#" target="_blank" rel="noopener noreferrer">🧭 Waze 一键导航</a>
             <a class="btn" id="googleBtn" href="https://www.google.com/maps/search/?api=1&query=MinJian+Granary" target="_blank">🗺 谷歌地图</a>
-        </div>
           </div>
+        </div>
         
-        <div style="width:160px">
-          <div class="qr" id="qrBox" title="欢迎光临">
+        <div class="expect-gif">
+          <div class="gif-wrapper">
             <img src="https://raw.githubusercontent.com/minjiangranary/MinJianV2/main/welcome.gif" alt="欢迎光临">
           </div>
         </div>
@@ -281,7 +280,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('table').textContent = safeText(table);
 
   document.getElementById('wazeBtn').href = CONFIG.waze;
-  document.getElementById('callBtn').href = "tel:" + CONFIG.phone;
 
   // Lightbox 图片画廊
   const lightbox = document.getElementById("lightboxOverlay");
@@ -332,27 +330,21 @@ document.addEventListener("DOMContentLoaded", () => {
     else if(e.key === "ArrowRight") showNext();
     else if(e.key === "Escape") hideLightbox();
   });
+
   // 移动端手指滑动切换
-let startX = 0;
-let endX = 0;
-
-lightboxImg.addEventListener("touchstart", (e) => {
-  startX = e.touches[0].clientX;
-});
-
-lightboxImg.addEventListener("touchmove", (e) => {
-  endX = e.touches[0].clientX;
-});
-
-lightboxImg.addEventListener("touchend", () => {
-  const diff = endX - startX;
-  if (Math.abs(diff) > 50) { // 超过50像素才触发切换
-    if (diff > 0) showPrev(); // 向右滑动显示上一张
-    else showNext();           // 向左滑动显示下一张
-  }
-  startX = 0;
-  endX = 0;
-});
+  let startX = 0;
+  let endX = 0;
+  lightboxImg.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; });
+  lightboxImg.addEventListener("touchmove", (e) => { endX = e.touches[0].clientX; });
+  lightboxImg.addEventListener("touchend", () => {
+    const diff = endX - startX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) showPrev();
+      else showNext();
+    }
+    startX = 0;
+    endX = 0;
+  });
 });
 </script>
 </body>
