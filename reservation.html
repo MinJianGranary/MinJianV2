@@ -289,6 +289,27 @@ document.addEventListener("DOMContentLoaded", () => {
     else if(e.key === "ArrowRight") showNext();
     else if(e.key === "Escape") hideLightbox();
   });
+  // 移动端手指滑动切换
+let startX = 0;
+let endX = 0;
+
+lightboxImg.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+});
+
+lightboxImg.addEventListener("touchmove", (e) => {
+  endX = e.touches[0].clientX;
+});
+
+lightboxImg.addEventListener("touchend", () => {
+  const diff = endX - startX;
+  if (Math.abs(diff) > 50) { // 超过50像素才触发切换
+    if (diff > 0) showPrev(); // 向右滑动显示上一张
+    else showNext();           // 向左滑动显示下一张
+  }
+  startX = 0;
+  endX = 0;
+});
 });
 </script>
 </body>
