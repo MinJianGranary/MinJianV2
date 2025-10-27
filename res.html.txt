@@ -57,16 +57,23 @@
   .qr{width:130px;height:130px;border-radius:0;background:transparent;display:flex;align-items:center;justify-content:center;border:none;}
   .divider{height:1px;background:linear-gradient(90deg,transparent,#eee,transparent);margin:14px 0;}
 
-  /* 图片画廊 */
-  .gallery { margin-top:20px; position:relative; overflow:hidden; border-radius:12px; }
-  .gallery h6 { margin-bottom:10px; }
-  .gallery-slide { display:flex; transition: transform 0.5s ease; }
-  .gallery-slide img {
-    width:100%;
+  /* 图片画廊 - 网格展示 */
+  .gallery { margin-top:20px; }
+  .gallery h3 { margin-bottom: 10px; }
+  .gallery-grid { display:flex; flex-wrap:wrap; gap:10px; }
+  .gallery-grid img {
+    width: calc(33.333% - 6.66px);
     border-radius:12px;
     object-fit:cover;
     cursor:pointer;
-    flex-shrink:0;
+  }
+  @media (max-width:520px){
+    .hero{padding:16px}
+    .logo{width:72px;height:72px}
+    .brand h1{font-size:16px}
+    .content{padding:14px}
+    .btn{padding:9px 12px}
+    .gallery-grid img { width: calc(50% - 5px); }
   }
 
   /* Lightbox 弹窗 */
@@ -74,24 +81,39 @@
     display:none;
     position:fixed;
     top:0; left:0; width:100%; height:100%;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.8);
     justify-content:center; align-items:center;
     z-index:9999;
+    cursor: pointer;
   }
   #lightboxOverlay img {
     max-width:90%;
     max-height:90%;
     border-radius:12px;
     box-shadow:0 8px 24px rgba(0,0,0,0.3);
+    cursor: default;
+    opacity:0;
+    transition: opacity 0.4s ease;
   }
+  #lightboxOverlay img.show-img { opacity:1; }
 
-  @media (max-width:520px){
-    .hero{padding:16px}
-    .logo{width:72px;height:72px}
-    .brand h1{font-size:16px}
-    .content{padding:14px}
-    .btn{padding:9px 12px}
+  /* 箭头按钮 */
+  #lightboxOverlay span {
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    color:#fff;
+    font-size:50px;
+    font-weight:bold;
+    cursor:pointer;
+    user-select:none;
+    padding:10px;
+    background: rgba(0,0,0,0.3);
+    border-radius:50%;
   }
+  #lightboxPrev{ left:20px; }
+  #lightboxNext{ right:20px; }
+  #lightboxOverlay.show{ display:flex; }
 </style>
 </head>
 <body>
@@ -153,10 +175,10 @@
         </div>
       </div>
 
-      <!-- 图片轮播画廊 -->
+      <!-- 图片画廊 -->
       <div class="gallery">
-        <h3 style="color:var(--accent);">📸 精彩图片</h6>
-        <div class="gallery-slide" id="gallerySlide">
+        <h3 style="color:var(--accent);">📸 精彩图片</h3>
+        <div class="gallery-grid">
           <img src="https://joane2523.github.io/MinJianV2/image1.png" alt="图片1">
           <img src="https://joane2523.github.io/MinJianV2/image2.png" alt="图片2">
           <img src="https://joane2523.github.io/MinJianV2/image3.png" alt="图片3">
@@ -182,7 +204,9 @@
 
 <!-- Lightbox 弹窗 -->
 <div id="lightboxOverlay">
+  <span id="lightboxPrev">&#10094;</span>
   <img src="" id="lightboxImg">
+  <span id="lightboxNext">&#10095;</span>
 </div>
 
 <script>
@@ -211,4 +235,61 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('date').textContent = safeText(date);
   document.getElementById('time').textContent = safeText(time);
   document.getElementById('guests').textContent = safeText(guests);
-  document.getElementById('table').textContent = safe
+  document.getElementById('table').textContent = safeText(table);
+
+  document.getElementById('wazeBtn').href = CONFIG.waze;
+  document.getElementById('callBtn').href = "tel:" + CONFIG.phone;
+
+  // Lightbox 图片画廊
+  const lightbox = document.getElementById("lightboxOverlay");
+  const lightboxImg = document.getElementById("lightboxImg");
+  const galleryImages = document.querySelectorAll(".gallery-grid img");
+  const prevBtn = document.getElementById("lightboxPrev");
+  const nextBtn = document.getElementById("lightboxNext");
+  let currentIndex = 0;
+
+  function fadeInImage(src) {
+    lightboxImg.classList.remove("show-img");
+    setTimeout(() => {
+      lightboxImg.src = src;
+      lightboxImg.onload = () => lightboxImg.classList.add("show-img");
+    }, 50);
+  }
+
+  function showLightbox(index) {
+    currentIndex = index;
+    fadeInImage(galleryImages[currentIndex].src);
+    lightbox.classList.add("show");
+  }
+
+  function hideLightbox() {
+    lightbox.classList.remove("show");
+    lightboxImg.classList.remove("show-img");
+    lightboxImg.src = "";
+  }
+
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+    fadeInImage(galleryImages[currentIndex].src);
+  }
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % galleryImages.length;
+    fadeInImage(galleryImages[currentIndex].src);
+  }
+
+  galleryImages.forEach((img, i) => img.addEventListener("click", () => showLightbox(i)));
+  prevBtn.addEventListener("click", (e) => { e.stopPropagation(); showPrev(); });
+  nextBtn.addEventListener("click", (e) => { e.stopPropagation(); showNext(); });
+  lightbox.addEventListener("click", hideLightbox);
+
+  document.addEventListener("keydown", (e) => {
+    if(!lightbox.classList.contains("show")) return;
+    if(e.key === "ArrowLeft") showPrev();
+    else if(e.key === "ArrowRight") showNext();
+    else if(e.key === "Escape") hideLightbox();
+  });
+});
+</script>
+</body>
+</html>
