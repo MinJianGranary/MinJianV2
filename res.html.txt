@@ -145,15 +145,15 @@
           <div class="small">🍽 餐位/包间编号：<strong id="table">V01</strong></div>
         </div>
 
-        <div class="info">
-          <h3>📞 门店信息</h3>
-          <p>MinJian Granary 民间粮仓</p>
-          <p class="small">电话：<a id="phoneLink" href="tel:0173764861">017-3764861</a></p>
+         <div class="info">
+            <h3>📞 门店信息</h3>
+            <p>MinJian Granary 民间粮仓</p>
+            <p class="small">电话：<a id="phoneLink" href="tel:0173764861">017-3764861</a></p>
             <p class="small">地址：查看导航或联系客服</p>
+          </div>
         </div>
-      </div>
 
-      <div class="divider"></div>
+        <div class="divider"></div>
 
       <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;">
         <div style="flex:1;min-width:220px">
