@@ -164,7 +164,6 @@
           <div class="buttons" style="margin-top:14px">
             <a class="btn" id="wazeBtn" href="#" target="_blank" rel="noopener noreferrer">🧭 Waze 一键导航</a>
             <a class="btn" id="googleBtn" href="https://www.google.com/maps/search/?api=1&query=MinJian+Granary" target="_blank">🗺 谷歌地图</a>
-            <a class="btn" id="callBtn" href="tel:0173764861">📞 立即拨号</a>
           </div>
         </div>
 
@@ -190,7 +189,7 @@
 
       <div class="note">
         <p style="margin:0;color:var(--muted);font-size:13px">
-           ⚠️停车信息：本店设有停车场，建议使用停车场停放；路边停车可能被贴罚单。若需要代客泊车或有其他特殊需求，请在到店前来电告知。
+           ⚠️停车信息：本店有停车场，建议使用停车场停放；路边停车可能被贴罚单。若需要代客泊车或有其他特殊需求，请在到店前来电告知。
         </p>
       </div>
     </div>
