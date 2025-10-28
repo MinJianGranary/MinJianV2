@@ -139,8 +139,8 @@
   pointer-events:none; /* 不阻挡点击 */
 }
 .expect-gif .gif-wrapper {
-  width:160px;
-  max-width:60%;
+  width:220px;
+  max-width:85%;
   height:auto;
 }
 .expect-gif img {
@@ -152,8 +152,8 @@
 /* 移动端自适应 GIF */
 @media (max-width:520px){
   .expect-gif .gif-wrapper {
-    width:60%;      /* 最大占容器宽度 60% */
-    max-width:160px;/* 最大 160px */
+    width:85%;      /* 最大占容器宽度 85% */
+    max-width:220px;/* 最大 220px */
     height:auto;
   }
 }
